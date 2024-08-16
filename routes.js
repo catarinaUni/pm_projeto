@@ -26,7 +26,6 @@ routes.delete("/usuarios/:id", (req, res) => {
 routes.put("/usuarios/:id", (req, res) => {
     const id = req.params.id;
     const usuarioModificado = req.body;
-    console.log(id, usuarioModificado)
     res.status(200).json(userController.modificarUsuario(id, usuarioModificado))
 })
 
