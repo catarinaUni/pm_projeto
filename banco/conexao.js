@@ -37,4 +37,7 @@ class Conexao {
 const instance = new Conexao()
 Object.freeze(instance)
 
+instance.query("CREATE DATABASE IF NOT EXISTS teste")
+instance.query("USE teste")
+
 export default instance;
