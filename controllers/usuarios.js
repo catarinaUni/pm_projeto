@@ -1,33 +1,12 @@
-let usuarios = [
-    {
-        "id": 1,
-        "nome": "joão",
-        "email": ""
-    },
-    {
-        "id": 2,
-        "nome": "joão2",
-        "email": ""
-    },
-    {
-        "id": 3,
-        "nome": "joão3",
-        "email": ""
-    },
-    {
-        "id": 4,
-        "nome": "joão4",
-        "email": ""
-    }
-]
+import instance from "../banco/conexao.js"
 
 
 export function listar(){
-    return usuarios
+    return instance.query('SELECT * FROM usuarios')
 }
 
 export function buscarPorId(id){
-    return usuarios.find(usuario => usuario.id == id)
+    return instance.query('SELECT * FROM usuarios WHERE id = ?', id)
 }
 
 export function modificarUsuario(id, usuarioModificado){
