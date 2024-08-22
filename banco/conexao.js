@@ -41,9 +41,10 @@ class Conexao {
 const instance = new Conexao();
 Object.freeze(instance);
 
+
 instance.query("CREATE DATABASE IF NOT EXISTS teste")
     .then(() => instance.query("USE teste"))
-    .then(() => instance.query('CREATE TABLE IF NOT EXISTS usuarios (d INT AUTO_INCREMENT PRIMARY KEY, nome VARCHAR(255), email VARCHAR(255))'))
+    .then(() => instance.query('CREATE TABLE IF NOT EXISTS usuarios (id INT AUTO_INCREMENT PRIMARY KEY, nome VARCHAR(255), email VARCHAR(255))'))
     .then(() => console.log("Banco e tabela criados com sucesso"))
     .catch(err => console.error("Erro ao executar consultas:", err));
 
