@@ -9,7 +9,6 @@ export async function listar(){
         throw err
     }
 }
-
 export async function buscarPorId(id){
     try {
         const resultados = await instance.query('SELECT * FROM usuarios WHERE id = ?', parseInt(id));
@@ -27,12 +26,11 @@ export async function modificarUsuario(id, usuarioModificado){
         throw err
     }
 
-
 }
 
 export async function adicionarUsuario(usuario){
     try {
-        const resultados = await instance.query(`INSERT INTO usuarios (nome, email) values ("${usuario.nome}", "${usuario.email}")`, usuario);
+        const resultados = await instance.query(`INSERT INTO usuarios (nome, email) values ("${usuario.nome}", "${usuario.email}")`);
         return resultados;
     } catch (err) {
         throw err
