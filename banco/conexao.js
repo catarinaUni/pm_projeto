@@ -4,10 +4,9 @@ class Conexao {
     constructor() {
         if (!Conexao.instance) {
             this.conection = mysql.createConnection({
-                host: "db",
+                host: "localhost",
                 user: "root",
-                password: "",
-                port: 3306
+                password: ""
             });
 
             this.conection.connect((err) => {
@@ -44,10 +43,8 @@ Object.freeze(instance);
 
 instance.query("CREATE DATABASE IF NOT EXISTS teste")
     .then(() => instance.query("USE teste"))
-    .then(
-        instance.query('CREATE TABLE usuarios (d INT AUTO_INCREMENT PRIMARY KEY, nome VARCHAR(255), email VARCHAR(255))')
-    )
-    .then(console.log("Banco e tabela criados com sucesso"))
+    .then(() => instance.query('CREATE TABLE IF NOT EXISTS usuarios (d INT AUTO_INCREMENT PRIMARY KEY, nome VARCHAR(255), email VARCHAR(255))'))
+    .then(() => console.log("Banco e tabela criados com sucesso"))
     .catch(err => console.error("Erro ao executar consultas:", err));
 
 export default instance;

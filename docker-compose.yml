@@ -1,0 +1,20 @@
+version: '3.8'
+services:
+  db:
+    image: mysql:5.7
+    ports:
+      - "3306:3306"
+    volumes:
+      - dbtest:/var/lib/mysql
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+    networks:
+      - mynetwork
+      
+networks:
+  mynetwork:
+    driver: bridge
+
+volumes:
+  dbtest:
+    driver: local

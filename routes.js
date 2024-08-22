@@ -3,8 +3,15 @@ import * as userController from './controllers/usuarios.js'
 
 const routes = express.Router();
 
-routes.get("/usuarios", (req, res) => {
-    res.status(200).json(userController.listar())
+routes.get("/usuarios", async (req, res) => {
+    try{
+        const lista = await userController.listar();
+        return res.status(200).json(lista)
+    }
+    catch{
+        console.log("erro")
+    }
+    
 })
 
 routes.get("/usuarios/:id", (req, res) => {
