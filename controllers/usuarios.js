@@ -10,17 +10,15 @@ export function buscarPorId(id){
 }
 
 export function modificarUsuario(id, usuarioModificado){
-    const usuarioIndex = usuarios.findIndex(usuario => usuario.id == id)
-    usuarios[usuarioIndex]= usuarioModificado
-    return usuarios
+    const nome = usuarioModificado.nome;
+    const email = usuarioModificado.email;
+    return instance.query(`UPDATE usuarios SET nome = ${nome}, email = ${email} WHERE id = ${id}`)
+
 }
 
 export function adicionarUsuario(usuario){
-    usuarios.push(usuario)
-    return usuarios
+    return instance.query(`INSERT INTO usuarios (nome, email) values (${usuario.nome}, ${usuario.email})`, usuario)
 }
 
 export function apagarUsuario(id) {
-    usuarios = usuarios.filter(usuario => usuario.id !== parseInt(id));
-    return usuarios;
 }
